@@ -1,0 +1,387 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+:root {
+  /* BLACK */
+  --black-100: #000000;
+  --black-hover: #212121;
+  --black-50: #1B1A1A;
+
+  /* WHITE */
+  --white-0: #FFFFFF;
+  --white-hover: #FFFFFF;
+
+  /* BLUE */
+  --blue-10: #F6F1FE;
+  --blue-20: #DACBFC;
+  --blue-30: #C7B1FB;
+  --blue-40: #A288EF;
+  --blue-50: #8367E7;
+  --blue-60: #6237DF;
+  --blue-70: #4933AA;
+  --blue-80: #34237C;
+  --blue-90: #20154E;
+  --blue-100: #140D31;
+  --blue-10-hover: #D7C1FB;
+  --blue-20-hover: #B79AF9;
+  --blue-30-hover: #A581F8;
+  --blue-40-hover: #815DE9;
+  --blue-50-hover: #5D39E0;
+  --blue-60-hover: #735AE2;
+  --blue-70-hover: #5E47C8;
+  --blue-80-hover: #442EA3;
+  --blue-90-hover: #352381;
+  --blue-100-hover: #2E1E71;
+
+  /* CYAN */
+  --cyan-10: #FAF3F0;
+  --cyan-20: #E3CDBA;
+  --cyan-30: #DBB9AA;
+  --cyan-40: #B69283;
+  --cyan-50: #9A7564;
+  --cyan-60: #785A4D;
+  --cyan-70: #563F36;
+  --cyan-80: #3E2E27;
+  --cyan-90: #271D18;
+  --cyan-100: #1B1411;
+  --cyan-10-hover: #EDD4C9;
+  --cyan-20-hover: #CEB49C;
+  --cyan-30-hover: #C89C88;
+  --cyan-40-hover: #A37462;
+  --cyan-50-hover: #7B5E51;
+  --cyan-60-hover: #987261;
+  --cyan-70-hover: #745549;
+  --cyan-80-hover: #5E463B;
+  --cyan-90-hover: #46342B;
+  --cyan-100-hover: #3C2D25;
+
+  /* GREEN */
+  --green-10: #ECF3E8;
+  --green-20: #D4EACC;
+  --green-30: #BDD6B1;
+  --green-40: #A5C796;
+  --green-50: #8EB97A;
+  --green-60: #739961;
+  --green-70: #57744A;
+  --green-80: #404C3B;
+  --green-90: #212C1D;
+  --green-100: #131B10;
+  --green-10-hover: #D0E1C6;
+  --green-20-hover: #B9D3AC;
+  --green-30-hover: #A2C591;
+  --green-40-hover: #87B473;
+  --green-50-hover: #71A758;
+  --green-60-hover: #5B7A4D;
+  --green-70-hover: #6E925D;
+  --green-80-hover: #576750;
+  --green-90-hover: #374A31;
+  --green-100-hover: #293A22;
+
+  /* MAGENTA */
+  --magenta-10: #FFE8E5;
+  --magenta-20: #FFC9C4;
+  --magenta-30: #FFA19A;
+  --magenta-40: #DB867F;
+  --magenta-50: #B76C66;
+  --magenta-60: #874D47;
+  --magenta-70: #7F3D39;
+  --magenta-80: #4B2825;
+  --magenta-90: #331B18;
+  --magenta-100: #1B0E0D;
+  --magenta-10-hover: #FFBBB3;
+  --magenta-20-hover: #FF988F;
+  --magenta-30-hover: #FF7166;
+  --magenta-40-hover: #D06158;
+  --magenta-50-hover: #A0514B;
+  --magenta-60-hover: #A75F58;
+  --magenta-70-hover: #91504A;
+  --magenta-80-hover: #6D3A36;
+  --magenta-90-hover: #572E29;
+  --magenta-100-hover: #482523;
+
+  /* ORANGE */
+  --orange-10: #FDEABA;
+  --orange-20: #FAD199;
+  --orange-30: #F99B4D;
+  --orange-40: #F8662A;
+  --orange-50: #D54519;
+  --orange-60: #B43310;
+  --orange-70: #9A270C;
+  --orange-80: #6E1D07;
+  --orange-90: #511504;
+  --orange-100: #421202;
+  --orange-10-hover: #FCDB88;
+  --orange-20-hover: #F8BB68;
+  --orange-30-hover: #F7801C;
+  --orange-40-hover: #E84807;
+  --orange-50-hover: #A93714;
+  --orange-60-hover: #E14014;
+  --orange-70-hover: #CB3410;
+  --orange-80-hover: #9E2A0A;
+  --orange-90-hover: #832206;
+  --orange-100-hover: #721F03;
+
+  /* PURPLE */
+  --purple-10: #F8F2F3;
+  --purple-20: #E6D5D8;
+  --purple-30: #CEAEB4;
+  --purple-40: #BB8E97;
+  --purple-50: #A76F7C;
+  --purple-60: #934F61;
+  --purple-70: #7E2F47;
+  --purple-80: #6A102E;
+  --purple-90: #5F0021;
+  --purple-100: #360011;
+  --purple-10-hover: #E6D1D4;
+  --purple-20-hover: #D3B5BB;
+  --purple-30-hover: #BC9098;
+  --purple-40-hover: #A9707B;
+  --purple-50-hover: #8E5764;
+  --purple-60-hover: #AD6679;
+  --purple-70-hover: #A33D5C;
+  --purple-80-hover: #8D0636;
+  --purple-90-hover: #8D0736;
+  --purple-100-hover: #6B0022;
+
+  /* RED */
+  --red-10: #FFF9ED;
+  --red-20: #FFD2AE;
+  --red-30: #FFB68E;
+  --red-40: #FC835F;
+  --red-50: #F95B3F;
+  --red-60: #F31710;
+  --red-70: #D10001;
+  --red-80: #9C0000;
+  --red-90: #6A0000;
+  --red-100: #410000;
+  --red-10-hover: #FFDBB8;
+  --red-20-hover: #FFA97A;
+  --red-30-hover: #FF965C;
+  --red-40-hover: #FB5C2D;
+  --red-50-hover: #F7300D;
+  --red-60-hover: #C7100A;
+  --red-70-hover: #FF0506;
+  --red-80-hover: #D10000;
+  --red-90-hover: #9E0000;
+  --red-100-hover: #750000;
+
+  /* TEAL */
+  --teal-10: #DDF8F8;
+  --teal-20: #B2F0F0;
+  --teal-30: #88E7E7;
+  --teal-40: #5DDFDF;
+  --teal-50: #33D7D7;
+  --teal-60: #23B3B3;
+  --teal-70: #1F7A7A;
+  --teal-80: #135E5E;
+  --teal-90: #0A3333;
+  --teal-100: #042020;
+  --teal-10-hover: #AAEEEE;
+  --teal-20-hover: #7BE5E5;
+  --teal-30-hover: #ADDBDB;
+  --teal-40-hover: #28CCCC;
+  --teal-50-hover: #23B3B3;
+  --teal-60-hover: #1B8888;
+  --teal-70-hover: #29A3A3;
+  --teal-80-hover: #1B8888;
+  --teal-90-hover: #125E5E;
+  --teal-100-hover: #0A4D4D;
+
+  /* GRAY */
+  --gray-10: #F8F8F6;
+  --gray-20: #E0E0DE;
+  --gray-30: #BBBBB9;
+  --gray-40: #A2A2A1;
+  --gray-50: #7D7D7C;
+  --gray-60: #585858;
+  --gray-70: #4B4949;
+  --gray-80: #313030;
+  --gray-90: #222222;
+  --gray-100: #1B1A1A;
+  --gray-10-hover: #D8D8D6;
+  --gray-20-hover: #B8B8B8;
+  --gray-30-hover: #7F7F7E;
+  --gray-40-hover: #5E5E5D;
+  --gray-50-hover: #737373;
+  --gray-60-hover: #5F5C5C;
+  --gray-70-hover: #656562;
+  --gray-80-hover: #4B4949;
+  --gray-90-hover: #3B3B3B;
+  --gray-100-hover: #343232;
+
+  /* WARM GRAY */
+  --warm-gray-0: #d8D0CF;
+  --warm-gray-10: #F4F3ED;
+  --warm-gray-20: #DCDAD6;
+  --warm-gray-30: #C4C1BE;
+  --warm-gray-40: #A09C9B;
+  --warm-gray-50: #878483;
+  --warm-gray-60: #636060;
+  --warm-gray-70: #4B4949;
+  --warm-gray-80: #313030;
+  --warm-gray-90: #222222;
+  --warm-gray-100: #1B1A1A;
+  --warm-gray-10-hover: #F2F1EB;
+  --warm-gray-20-hover: #DAD8D4;
+  --warm-gray-30-hover: #C2BFBC;
+  --warm-gray-40-hover: #9F9B9A;
+  --warm-gray-50-hover: #93908F;
+  --warm-gray-60-hover: #737070;
+  --warm-gray-70-hover: #5D5B5B;
+  --warm-gray-80-hover: #474747;
+  --warm-gray-90-hover: #383838;
+  --warm-gray-100-hover: #2D2D2D;
+
+  /* COOL GRAY */
+  --cool-gray-20: #CDD3DA;
+  --cool-gray-20-hover: #C4C9D1;
+  --cool-gray-100: #121619;
+
+  /* YELLOW */
+  --yellow-10: #FEFEBF;
+  --yellow-20: #FEF48B;
+  --yellow-30: #FADB4A;
+  --yellow-40: #E5B63D;
+  --yellow-50: #C59C33;
+  --yellow-60: #907324;
+  --yellow-70: #705919;
+  --yellow-80: #4F4110;
+  --yellow-90: #3A2F0A;
+  --yellow-100: #302706;
+  --yellow-10-hover: #ECEC9D;
+  --yellow-20-hover: #F5E861;
+  --yellow-30-hover: #EDCA26;
+  --yellow-40-hover: #C79B29;
+  --yellow-50-hover: #9E7D29;
+  --yellow-60-hover: #A08231;
+  --yellow-70-hover: #8A6D1F;
+  --yellow-80-hover: #6E5B16;
+  --yellow-90-hover: #53430E;
+  --yellow-100-hover: #493B09;
+
+  /* BUTTON SEMANTIC COLORS - Map your design tokens to shadcn */
+  --hover-primary: var(--red-70-hover);
+  --hover-primary-text: var(--red-70);
+  --hover-secondary: var(--gray-80-hover);
+  --hover-tertiary: var(--gray-80-hover);
+  --danger-01: var(--red-20);
+  --active-primary: var(--red-80);
+  --active-secondary: var(--gray-60);
+
+  /* SHADCN UI TOKENS - Using your color palette */
+  /* --radius: 0.625rem; */
+  --background: var(--white-0);
+  --foreground: var(--gray-100);
+  --card: var(--white-0);
+  --card-foreground: var(--gray-100);
+  --popover: var(--white-0);
+  --popover-foreground: var(--gray-100);
+  --primary: var(--red-70);
+  --primary-foreground: var(--white-0);
+  --secondary: var(--gray-20);
+  --secondary-foreground: var(--gray-100);
+  --muted: var(--gray-20);
+  --muted-foreground: var(--gray-60);
+  --accent: var(--blue-10);
+  --accent-foreground: var(--blue-80);
+  --destructive: var(--red-60);
+  --border: var(--gray-30);
+  --input: var(--gray-30);
+  --ring: var(--blue-60);
+  --chart-1: var(--blue-60);
+  --chart-2: var(--teal-50);
+  --chart-3: var(--green-60);
+  --chart-4: var(--orange-50);
+  --chart-5: var(--purple-60);
+  --sidebar: var(--gray-10);
+  --sidebar-foreground: var(--gray-100);
+  --sidebar-primary: var(--blue-70);
+  --sidebar-primary-foreground: var(--white-0);
+  --sidebar-accent: var(--gray-20);
+  --sidebar-accent-foreground: var(--gray-100);
+  --sidebar-border: var(--gray-30);
+  --sidebar-ring: var(--blue-60);
+}
+
+.dark {
+  --background: var(--gray-100);
+  --foreground: var(--white-0);
+  --card: var(--gray-90);
+  --card-foreground: var(--white-0);
+  --popover: var(--gray-90);
+  --popover-foreground: var(--white-0);
+  --primary: var(--red-50);
+  --primary-foreground: var(--white-0);
+  --secondary: var(--warm-gray-80);
+  --secondary-foreground: var(--white-0);
+  --muted: var(--gray-80);
+  --muted-foreground: var(--gray-40);
+  --accent: var(--blue-80);
+  --accent-foreground: var(--white-0);
+  --destructive: var(--red-50);
+  --border: var(--gray-70);
+  --input: var(--gray-70);
+  --ring: var(--blue-60);
+  --chart-1: var(--blue-50);
+  --chart-2: var(--teal-40);
+  --chart-3: var(--green-50);
+  --chart-4: var(--orange-40);
+  --chart-5: var(--purple-50);
+  --sidebar: var(--gray-90);
+  --sidebar-foreground: var(--white-0);
+  --sidebar-primary: var(--blue-50);
+  --sidebar-primary-foreground: var(--white-0);
+  --sidebar-accent: var(--gray-80);
+  --sidebar-accent-foreground: var(--white-0);
+  --sidebar-border: var(--gray-70);
+  --sidebar-ring: var(--blue-60);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
