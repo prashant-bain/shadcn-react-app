@@ -1,6 +1,6 @@
 {
   "name": "@prashant-bain/shadcn-components",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Custom shadcn/ui components with overridden CSS styles",
   "type": "module",
   "main": "./dist/index.js",
