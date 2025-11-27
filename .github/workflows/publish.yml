@@ -30,6 +30,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
+          fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
       
       - uses: actions/setup-node@v4
@@ -37,11 +38,6 @@ jobs:
           node-version: '20'
           registry-url: 'https://npm.pkg.github.com'
           scope: '@prashant-bain'
-      
-      - name: Configure Git
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
       
       - name: Configure npm for GitHub Packages
         run: |
@@ -53,6 +49,7 @@ jobs:
       
       - name: Bump version
         id: version
+        if: github.event_name != 'release'
         run: |
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
             VERSION_TYPE="${{ github.event.inputs.version }}"
@@ -63,11 +60,23 @@ jobs:
           CURRENT_VERSION=$(node -p "require('./package.json').version")
           echo "Current version: $CURRENT_VERSION"
           
+          # Configure git
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          
+          # Bump version
           npm version $VERSION_TYPE -m "chore: bump version to %s [skip ci]"
           
           NEW_VERSION=$(node -p "require('./package.json').version")
           echo "New version: $NEW_VERSION"
           echo "version=$NEW_VERSION" >> $GITHUB_OUTPUT
+      
+      - name: Get current version (for release trigger)
+        id: current_version
+        if: github.event_name == 'release'
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
       
       - name: Push version bump
         if: github.event_name != 'release'
