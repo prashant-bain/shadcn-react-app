@@ -50,7 +50,7 @@ function App() {
                   href="#"
                   className="ml-auto inline-block text-sm underline-offset-4 hover:underline"
                 >
-                  Forgot your password?
+                  Forgot your password ?
                 </a>
               </div>
             </div>
