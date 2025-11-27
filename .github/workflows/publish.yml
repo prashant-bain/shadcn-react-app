@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths-ignore:
-      - '**.md'
+      - '**/*.md'
       - '.gitignore'
   release:
     types: [created]
@@ -27,6 +27,7 @@ jobs:
     permissions:
       contents: write
       packages: write
+
     steps:
       - uses: actions/checkout@v4
         with:
@@ -65,11 +66,11 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           
           # Bump version WITHOUT creating git commit/tag
-          npm version $VERSION_TYPE --no-git-tag-version
+          npm version "$VERSION_TYPE" --no-git-tag-version
           
           NEW_VERSION=$(node -p "require('./package.json').version")
           echo "New version: $NEW_VERSION"
-          echo "version=$NEW_VERSION" >> $GITHUB_OUTPUT
+          echo "version=$NEW_VERSION" >> "$GITHUB_OUTPUT"
           
           # Commit the version bump
           git add package.json package-lock.json
@@ -83,17 +84,15 @@ jobs:
         if: github.event_name == 'release'
         run: |
           VERSION=$(node -p "require('./package.json').version")
-          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
       
       - name: Push version bump
         if: github.event_name != 'release'
         run: |
           git push origin main --follow-tags
       
-      - name: Pull latest changes to ensure clean state
-        if: github.event_name != 'release'
-        run: |
-          git pull --rebase origin main
+      # Removed the 'Pull latest changes to ensure clean state' step
+      # because it failed with unstaged changes during rebase.
       
       - name: Build package
         run: npm run build
