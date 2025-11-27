@@ -1,13 +1,46 @@
 {
-  "name": "shadcn-react-app",
-  "private": true,
-  "version": "0.0.0",
+  "name": "@bain/shadcn-components",
+  "version": "1.0.0",
+  "description": "Custom shadcn/ui components with overridden CSS styles",
   "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./styles.css": "./dist/styles.css"
+  },
+  "files": [
+    "dist",
+    "PACKAGE_README.md"
+  ],
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/prashant-bain/shadcn-react-app.git"
+  },
+  "keywords": [
+    "react",
+    "shadcn",
+    "ui",
+    "components",
+    "tailwind"
+  ],
+  "author": "prashant-bain",
+  "license": "MIT",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "npm run build:lib && npm run build:css",
+    "build:lib": "tsc && vite build --config vite.config.lib.ts",
+    "build:css": "node scripts/build-css.js",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "prepublishOnly": "npm run build"
   },
   "dependencies": {
     "@radix-ui/react-label": "^2.1.8",
