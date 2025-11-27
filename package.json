@@ -1,5 +1,5 @@
 {
-  "name": "@prashant-bain/shadcn-components",
+  "name": "@-bain/shadcn-components",
   "version": "1.0.0",
   "description": "Custom shadcn/ui components with overridden CSS styles",
   "type": "module",
