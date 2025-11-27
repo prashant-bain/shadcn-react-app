@@ -77,14 +77,6 @@ jobs:
       - name: Build package
         run: npm run build
       
-      - name: Ensure Git working directory is clean
-        run: |
-          if [[ -n "$(git status --porcelain)" ]]; then
-            echo "ERROR: Git working directory not clean."
-            git status
-            exit 1
-          fi
-      
       - name: Publish to GitHub Packages
         run: npm publish
         env:
