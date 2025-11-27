@@ -64,12 +64,19 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           
-          # Bump version
-          npm version $VERSION_TYPE -m "chore: bump version to %s [skip ci]"
+          # Bump version WITHOUT creating git commit/tag
+          npm version $VERSION_TYPE --no-git-tag-version
           
           NEW_VERSION=$(node -p "require('./package.json').version")
           echo "New version: $NEW_VERSION"
           echo "version=$NEW_VERSION" >> $GITHUB_OUTPUT
+          
+          # Commit the version bump
+          git add package.json package-lock.json
+          git commit -m "chore: bump version to $NEW_VERSION [skip ci]"
+          
+          # Create git tag
+          git tag "v$NEW_VERSION"
       
       - name: Get current version (for release trigger)
         id: current_version
@@ -82,6 +89,11 @@ jobs:
         if: github.event_name != 'release'
         run: |
           git push origin main --follow-tags
+      
+      - name: Pull latest changes to ensure clean state
+        if: github.event_name != 'release'
+        run: |
+          git pull --rebase origin main
       
       - name: Build package
         run: npm run build
